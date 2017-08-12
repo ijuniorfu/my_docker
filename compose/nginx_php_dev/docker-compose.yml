@@ -11,7 +11,7 @@ services:
       - mongo_dev:mongo
       - redis_dev:redis
     volumes:
-     - /data/htdocs:/data/conf
+     - /data/htdocs:/data/htdocs
      - /data/uploads:/data/uploads
      - /data/docker/conf/nginx:/etc/nginx/conf.d/
   redis_dev:

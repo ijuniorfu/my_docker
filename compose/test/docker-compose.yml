@@ -1,0 +1,8 @@
+version: "2.0"
+services:
+  test_dev:
+    image: jun/nginx_php_dev:1.0
+    ports:
+     - "2223:22"
+    volumes:
+     - e:/htdocs:/data/htdocs
