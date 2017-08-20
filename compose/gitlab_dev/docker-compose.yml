@@ -1,0 +1,9 @@
+version: "2.0"
+services:
+  gitlab_dev:
+    image: gitlab/gitlab-ce
+    ports:
+     - "5080:80"
+     - "5022:22"
+    volumes:
+     - /data/datadir/gitlab/etc:/etc/gitlab
