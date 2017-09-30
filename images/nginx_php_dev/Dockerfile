@@ -45,17 +45,18 @@ echo "extension=swoole.so" >> /etc/php.d/swoole.ini
 # 安装phalcon扩展
 RUN yum -y install re2c
 WORKDIR /tmp
-RUN git clone https://github.com/phalcon/cphalcon
-WORKDIR /tmp/cphalcon/build
+RUN wget https://github.com/phalcon/cphalcon/archive/v3.2.2.tar.gz -O cphalcon-3.2.2.tar.gz && \
+tar -zxvf cphalcon-3.2.2.tar.gz
+WORKDIR /tmp/cphalcon-3.2.2/build
 RUN ./install && \
-touch /etc/php.d/swoole.ini && \
+touch /etc/php.d/phalcon.ini && \
 echo "; Enable phalcon extension module" > /etc/php.d/phalcon.ini && \
 echo "extension=phalcon.so" >> /etc/php.d/phalcon.ini
 
 # 安装php7的memcache扩展
 WORKDIR /tmp
-RUN git clone https://github.com/websupport-sk/pecl-memcache memcache
-WORKDIR /tmp/memcache
+RUN git clone https://github.com/websupport-sk/pecl-memcache.git
+WORKDIR /tmp/pecl-memcache
 RUN phpize && \
 ./configure && \
 make && make install && \
@@ -65,25 +66,25 @@ echo "extension=memcache.so" >> /etc/php.d/memcache.ini
 
 
 # 安装rabbitmq-c
-#WORKDIR /tmp
-#RUN wget https://github.com/alanxz/rabbitmq-c/archive/v0.8.0.tar.gz -O rabbitmq-c-0.8.0.tar.gz && \
-#tar -zxf rabbitmq-c-0.8.0.tar.gz
-#WORKDIR /tmp/rabbitmq-c-0.8.0
-#RUN yum install -y libtool && autoreconf -i && \
-#./configure --prefix=/usr/local/rabbitmq-c && \
-#make && make install
+WORKDIR /tmp
+RUN wget https://github.com/alanxz/rabbitmq-c/archive/v0.8.0.tar.gz -O rabbitmq-c-0.8.0.tar.gz && \
+tar -zxf rabbitmq-c-0.8.0.tar.gz
+WORKDIR /tmp/rabbitmq-c-0.8.0
+RUN yum install -y libtool && autoreconf -i && \
+./configure --prefix=/usr/local/rabbitmq-c && \
+make && make install
 
 # 安装amqp
-#WORKDIR /tmp
-#RUN wget http://pecl.php.net/get/amqp-1.9.0.tgz && \
-#tar -zxf amqp-1.9.0.tgz
-#WORKDIR /tmp/amqp-1.9.0
-#RUN phpize && \
-#./configure --with-amqp --with-librabbitmq-dir=/usr/local/rabbitmq-c && \
-#make && make install && \
-#touch /etc/php.d/amqp.ini && \
-#echo "; Enable amqp extension module" > /etc/php.d/amqp.ini && \
-#echo "extension=amqp.so" >> /etc/php.d/amqp.ini
+WORKDIR /tmp
+RUN wget http://pecl.php.net/get/amqp-1.9.0.tgz && \
+tar -zxf amqp-1.9.0.tgz
+WORKDIR /tmp/amqp-1.9.0
+RUN phpize && \
+./configure --with-amqp --with-librabbitmq-dir=/usr/local/rabbitmq-c && \
+make && make install && \
+touch /etc/php.d/amqp.ini && \
+echo "; Enable amqp extension module" > /etc/php.d/amqp.ini && \
+echo "extension=amqp.so" >> /etc/php.d/amqp.ini
 
 # composer安装
 RUN  curl -s http://getcomposer.org/installer | php && \
