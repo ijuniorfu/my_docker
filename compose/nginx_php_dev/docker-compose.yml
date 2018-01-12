@@ -1,7 +1,7 @@
 version: "2.0"
 services:
   web_dev:
-    image: jun/nginx_php_dev:1.0
+    image: ijuniorfu/nginx_php_dev:1.0
     ports:
      - "80:80"
      - "443:443"

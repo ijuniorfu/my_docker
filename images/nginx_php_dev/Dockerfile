@@ -1,4 +1,4 @@
-# Version 0.1
+# Version 1.0
 
 # 基础镜像
 FROM centos:6.6
@@ -18,8 +18,7 @@ yum -y install php71w php71w-pdo php71w-soap php71w-opcache php71w-mcrypt php71w
 chown -R nginx:nginx /var/lib/php/
 
 RUN sed -i -e 's/user = apache/user = nginx/' /etc/php-fpm.d/www.conf && \
-sed -i -e 's/group = apache/group = nginx/' /etc/php-fpm.d/www.conf && \
-sed -i -e 's/short_open_tag = Off/short_open_tag = On/' /etc/php.ini
+sed -i -e 's/group = apache/group = nginx/' /etc/php-fpm.d/www.conf
 
 RUN cp /usr/share/zoneinfo/Asia/Shanghai /etc/localtime && \
 yum -y install git && \
@@ -32,26 +31,15 @@ chkconfig --levels 235 nginx on
 
 # 安装swoole扩展
 WORKDIR /tmp
-RUN wget https://github.com/swoole/swoole-src/archive/v1.9.12.tar.gz -O swoole-src-1.9.12.tar.gz && \
-tar -zxf swoole-src-1.9.12.tar.gz
-WORKDIR /tmp/swoole-src-1.9.12
+RUN wget https://github.com/swoole/swoole-src/archive/v1.9.20.tar.gz -O swoole-src-1.9.20.tar.gz && \
+tar -zxf swoole-src-1.9.20.tar.gz
+WORKDIR /tmp/swoole-src-1.9.20
 RUN phpize && \
 ./configure && \
 make && make install && \
 touch /etc/php.d/swoole.ini && \
 echo "; Enable swoole extension module" > /etc/php.d/swoole.ini && \
 echo "extension=swoole.so" >> /etc/php.d/swoole.ini
-
-# 安装phalcon扩展
-RUN yum -y install re2c
-WORKDIR /tmp
-RUN wget https://github.com/phalcon/cphalcon/archive/v3.2.2.tar.gz -O cphalcon-3.2.2.tar.gz && \
-tar -zxvf cphalcon-3.2.2.tar.gz
-WORKDIR /tmp/cphalcon-3.2.2/build
-RUN ./install && \
-touch /etc/php.d/phalcon.ini && \
-echo "; Enable phalcon extension module" > /etc/php.d/phalcon.ini && \
-echo "extension=phalcon.so" >> /etc/php.d/phalcon.ini
 
 # 安装php7的memcache扩展
 WORKDIR /tmp
@@ -94,8 +82,6 @@ ENV ROOT_PASSWORD 123456
 
 # ssh安装
 RUN yum install openssh-server -y && \
-sed -i '$a PermitRootLogin yes' /etc/ssh/ssh_config && \
-sed -i '$a UsePAM no' /etc/ssh/ssh_config && \
 echo $ROOT_PASSWORD | passwd root --stdin && \
 chkconfig --levels 235 sshd on && \
 rm -rf /tmp/*
