@@ -1,4 +1,3 @@
-# Version 1.0
 
 # 基础镜像
 FROM ijuniorfu/centos7-systemd
@@ -29,7 +28,6 @@ yum -y install tar && \
 yum -y install telnet && \
 systemctl enable php-fpm.service && \
 systemctl enable nginx.service
-
 
 # 安装swoole扩展
 WORKDIR /tmp
@@ -87,7 +85,6 @@ RUN yum install openssh-server -y && \
 echo $ROOT_PASSWORD | passwd root --stdin && \
 systemctl enable sshd.service && \
 rm -rf /tmp/*
-
 
 WORKDIR /
 
