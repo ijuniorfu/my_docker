@@ -31,9 +31,9 @@ chkconfig --levels 235 nginx on
 
 # 安装swoole扩展
 WORKDIR /tmp
-RUN wget https://github.com/swoole/swoole-src/archive/v1.9.20.tar.gz -O swoole-src-1.9.20.tar.gz && \
-tar -zxf swoole-src-1.9.20.tar.gz
-WORKDIR /tmp/swoole-src-1.9.20
+RUN wget http://pecl.php.net/get/swoole-1.9.23.tgz && \
+tar -zxf swoole-1.9.23.tgz
+WORKDIR /tmp/swoole-1.9.23
 RUN phpize && \
 ./configure && \
 make && make install && \
