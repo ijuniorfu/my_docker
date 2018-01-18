@@ -85,7 +85,7 @@ ENV ROOT_PASSWORD 123456
 # ssh安装
 RUN yum install openssh-server -y && \
 echo $ROOT_PASSWORD | passwd root --stdin && \
-chkconfig --levels 235 sshd on && \
+systemctl enable sshd.service && \
 rm -rf /tmp/*
 
 
