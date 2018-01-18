@@ -1,2 +1,2 @@
-# php_dockerize_dev
-php dockerize dev
+# php_dockerize
+php dockerize

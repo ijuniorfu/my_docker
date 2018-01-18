@@ -1,4 +1,3 @@
-# Version 1.0
 
 # 基础镜像
 FROM centos:6.6
