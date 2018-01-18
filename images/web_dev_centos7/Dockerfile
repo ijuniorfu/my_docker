@@ -7,7 +7,7 @@ MAINTAINER ijuniorfu@gmail.com
 
 # 镜像操作命令
 RUN mv /etc/yum.repos.d/CentOS-Base.repo CentOS-Base.repo.bak &&
-curl http://mirrors.aliyun.com/repo/Centos-7.repo > /etc/yum.repos.d/CentOS-Base.repo && \
+/usr/bin/curl http://mirrors.aliyun.com/repo/Centos-7.repo > /etc/yum.repos.d/CentOS-Base.repo && \
 yum clean all && \
 yum makecache && \
 yum update -y && \
