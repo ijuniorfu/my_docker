@@ -1,7 +1,7 @@
 version: "2.0"
 services:
   web_dev:
-    image: ijuniorfu/nginx_php_dev:centos7
+    image: ijuniorfu/web_dev_centos7
     privileged: true
     ports:
      - "80:80"
