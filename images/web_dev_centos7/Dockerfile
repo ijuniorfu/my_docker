@@ -6,9 +6,7 @@ FROM ijuniorfu/centos7-systemd
 MAINTAINER ijuniorfu@gmail.com
 
 # 镜像操作命令
-RUN mv /etc/yum.repos.d/CentOS-Base.repo CentOS-Base.repo.bak &&
-/usr/bin/curl http://mirrors.aliyun.com/repo/Centos-7.repo > /etc/yum.repos.d/CentOS-Base.repo && \
-yum clean all && \
+RUN yum clean all && \
 yum makecache && \
 yum update -y && \
 rpm -Uvh https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm && \
