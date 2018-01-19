@@ -22,6 +22,8 @@ sed -i -e 's/group = apache/group = nginx/' /etc/php-fpm.d/www.conf
 RUN  yum -y install kde-l10n-Chinese && \
 yum -y reinstall glibc-common && \
 localedef -c -f UTF-8 -i zh_CN zh_CN.utf8 && \
+echo "export LANG=zh_CN.UTF-8" >> /etc/profile && \     # for ssh
+echo "export LC_ALL=zh_CN.UTF-8" >> /etc/profile && \
 ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime && \
 yum -y install git && \
 yum -y install wget && \
@@ -31,7 +33,7 @@ yum -y install net-tools && \
 systemctl enable php-fpm.service && \
 systemctl enable nginx.service
 
-ENV LANG zh_CN.UTF-8
+ENV LANG zh_CN.UTF-8        # for docker exec
 ENV LC_ALL zh_CN.UTF-8
 
 # 安装swoole扩展
