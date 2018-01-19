@@ -31,8 +31,8 @@ yum -y install net-tools && \
 systemctl enable php-fpm.service && \
 systemctl enable nginx.service
 
-ENV LANG "zh_CN.UTF-8"
-ENV LC_ALL "zh_CN.UTF-8"
+ENV LANG zh_CN.UTF-8
+ENV LC_ALL zh_CN.UTF-8
 
 # 安装swoole扩展
 WORKDIR /tmp
