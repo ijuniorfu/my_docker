@@ -7,3 +7,8 @@ services:
      - "5022:22"
     volumes:
      - /data/datadir/gitlab/etc:/etc/gitlab
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "200k"
+        max-file: "10"
