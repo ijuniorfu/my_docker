@@ -14,8 +14,7 @@ rpm -Uvh https://mirror.webtatic.com/yum/el7/webtatic-release.rpm && \
 yum -y install ntp make openssl openssl-devel pcre pcre-devel libpng libpng-devel libjpeg-6b libjpeg-devel-6b freetype freetype-devel gd gd-devel zlib zlib-devel gcc gcc-c++ libXpm libXpm-devel ncurses ncurses-devel libmcrypt libmcrypt-devel libxml2 gcc gcc-c++ libXpm libXpm-devel ncurses ncurses-devel libmcrypt libmcrypt-devel libxml2 && \
 yum install -y nginx && \
 yum -y install php71w php71w-pdo php71w-soap php71w-opcache php71w-mcrypt php71w-mbstring php71w-gd php71w-fpm php71w-cli php71w-mysqlnd php71w-pear php71w-pecl-imagick php71w-pecl-imagick-devel php71w-pecl-redis php71w-pecl-mongodb php71w-pecl-memcached php71w-pecl-xdebug php71w-imap php71w-devel php71w-bcmath php71w-pecl-apcu php71w-pecl-apcu-devel php71w-pecl-igbinary && \
-
-RUN sed -i -e 's/user = apache/user = root/' /etc/php-fpm.d/www.conf && \
+sed -i -e 's/user = apache/user = root/' /etc/php-fpm.d/www.conf && \
 sed -i -e 's/group = apache/group = root/' /etc/php-fpm.d/www.conf
 
 RUN  yum -y install kde-l10n-Chinese && \
