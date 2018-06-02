@@ -15,7 +15,8 @@ yum install -y nginx && \
 rpm -Uvh https://mirror.webtatic.com/yum/el6/latest.rpm && \
 yum -y install php71w php71w-pdo php71w-soap php71w-opcache php71w-mcrypt php71w-mbstring php71w-gd php71w-fpm php71w-cli php71w-mysqlnd php71w-pear php71w-pecl-imagick php71w-pecl-imagick-devel php71w-pecl-redis php71w-pecl-mongodb php71w-pecl-memcached php71w-pecl-xdebug php71w-imap php71w-devel php71w-bcmath php71w-pecl-apcu php71w-pecl-apcu-devel php71w-pecl-igbinary && \
 sed -i -e 's/user = apache/user = root/' /etc/php-fpm.d/www.conf && \
-sed -i -e 's/group = apache/group = root/' /etc/php-fpm.d/www.conf
+sed -i -e 's/group = apache/group = root/' /etc/php-fpm.d/www.conf && \
+sed -i -e 's/php-fpm --daemonize/php-fpm -R --daemonize/' /etc/init.d/php-fpm
 
 RUN cp /usr/share/zoneinfo/Asia/Shanghai /etc/localtime && \
 yum -y install git && \
