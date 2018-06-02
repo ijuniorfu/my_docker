@@ -13,7 +13,9 @@ services:
     volumes:
      - /data/htdocs:/data/htdocs
      - /data/uploads:/data/uploads
-     - /data/docker/conf/nginx:/etc/nginx/conf.d/
+     - /data/docker/conf/nginx/conf.d:/etc/nginx/conf.d
+     - /data/docker/conf/nginx/nginx.conf:/etc/nginx/nginx.conf
+     - /data/docker/conf/php/php.ini:/etc/php.ini
     logging:
       driver: "json-file"
       options:

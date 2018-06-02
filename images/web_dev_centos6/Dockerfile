@@ -14,16 +14,16 @@ yum -y install ntp make openssl openssl-devel pcre pcre-devel libpng libpng-deve
 yum install -y nginx && \
 rpm -Uvh https://mirror.webtatic.com/yum/el6/latest.rpm && \
 yum -y install php71w php71w-pdo php71w-soap php71w-opcache php71w-mcrypt php71w-mbstring php71w-gd php71w-fpm php71w-cli php71w-mysqlnd php71w-pear php71w-pecl-imagick php71w-pecl-imagick-devel php71w-pecl-redis php71w-pecl-mongodb php71w-pecl-memcached php71w-pecl-xdebug php71w-imap php71w-devel php71w-bcmath php71w-pecl-apcu php71w-pecl-apcu-devel php71w-pecl-igbinary && \
-chown -R nginx:nginx /var/lib/php/
 
-RUN sed -i -e 's/user = apache/user = nginx/' /etc/php-fpm.d/www.conf && \
-sed -i -e 's/group = apache/group = nginx/' /etc/php-fpm.d/www.conf
+RUN sed -i -e 's/user = apache/user = root/' /etc/php-fpm.d/www.conf && \
+sed -i -e 's/group = apache/group = root/' /etc/php-fpm.d/www.conf
 
 RUN cp /usr/share/zoneinfo/Asia/Shanghai /etc/localtime && \
 yum -y install git && \
 yum -y install wget && \
 yum -y install tar && \
 yum -y install telnet && \
+yum -y install crontabs && \
 chkconfig --levels 235 php-fpm on && \
 chkconfig --levels 235 nginx on
 
