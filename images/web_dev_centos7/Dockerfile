@@ -38,9 +38,9 @@ ENV LC_ALL zh_CN.UTF-8
 
 # 安装swoole扩展
 WORKDIR /tmp
-RUN wget http://pecl.php.net/get/swoole-1.9.23.tgz && \
-tar -zxf swoole-1.9.23.tgz
-WORKDIR /tmp/swoole-1.9.23
+RUN wget http://pecl.php.net/get/swoole-4.2.9.tgz && \
+tar -zxf swoole-4.2.9.tgz
+WORKDIR /tmp/swoole-4.2.9
 RUN phpize && \
 ./configure && \
 make && make install && \
