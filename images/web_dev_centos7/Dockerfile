@@ -92,10 +92,7 @@ ENV ROOT_PASSWORD 123456
 RUN yum install openssh-server -y && \
 echo $ROOT_PASSWORD | passwd root --stdin && \
 systemctl enable sshd.service && \
-rm -rf /tmp/* && \
-systemctl start crond.service && \
-systemctl start php-fpm.service && \
-systemctl start nginx.service
+rm -rf /tmp/*
 
 WORKDIR /
 
