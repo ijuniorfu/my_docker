@@ -33,9 +33,6 @@ systemctl enable crond.service && \
 systemctl enable php-fpm.service && \
 systemctl enable nginx.service && \
 sed -i -e 's/php-fpm --nodaemonize/php-fpm -R --daemonize/' /usr/lib/systemd/system/php-fpm.service
-systemctl start crond.service && \
-systemctl start php-fpm.service && \
-systemctl start nginx.service
 
 ENV LANG zh_CN.UTF-8
 ENV LC_ALL zh_CN.UTF-8
@@ -95,7 +92,10 @@ ENV ROOT_PASSWORD 123456
 RUN yum install openssh-server -y && \
 echo $ROOT_PASSWORD | passwd root --stdin && \
 systemctl enable sshd.service && \
-rm -rf /tmp/*
+rm -rf /tmp/* && \
+systemctl start crond.service && \
+systemctl start php-fpm.service && \
+systemctl start nginx.service
 
 WORKDIR /
 
