@@ -31,7 +31,11 @@ yum -y install net-tools && \
 yum -y install crontabs && \
 systemctl enable crond.service && \
 systemctl enable php-fpm.service && \
-systemctl enable nginx.service
+systemctl enable nginx.service && \
+sed -i -e 's/php-fpm --nodaemonize --fpm-config /etc/php-fpm.conf -R/' /usr/lib/systemd/system/php-fpm.service
+systemctl start crond.service && \
+systemctl start php-fpm.service && \
+systemctl start nginx.service
 
 ENV LANG zh_CN.UTF-8
 ENV LC_ALL zh_CN.UTF-8
