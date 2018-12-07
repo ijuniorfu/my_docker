@@ -32,7 +32,7 @@ yum -y install crontabs && \
 systemctl enable crond.service && \
 systemctl enable php-fpm.service && \
 systemctl enable nginx.service && \
-sed -i -e 's/php-fpm --nodaemonize --fpm-config /etc/php-fpm.conf -R/' /usr/lib/systemd/system/php-fpm.service
+sed -i -e 's/php-fpm --nodaemonize/php-fpm -R --daemonize/' /usr/lib/systemd/system/php-fpm.service
 systemctl start crond.service && \
 systemctl start php-fpm.service && \
 systemctl start nginx.service
