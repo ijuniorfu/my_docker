@@ -10,8 +10,7 @@ RUN yum clean all && \
 yum makecache && \
 yum update -y && \
 rpm -Uvh https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm && \
-yum install http://rpms.remirepo.net/enterprise/remi-release-7.rpm && \
-yum install yum-utils  && \
+yum -y install http://rpms.remirepo.net/enterprise/remi-release-7.rpm && \
 yum -y install ntp make openssl openssl-devel pcre pcre-devel libpng libpng-devel libjpeg-6b libjpeg-devel-6b freetype freetype-devel gd gd-devel zlib zlib-devel gcc gcc-c++ libXpm libXpm-devel ncurses ncurses-devel libmcrypt libmcrypt-devel libxml2 gcc gcc-c++ libXpm libXpm-devel ncurses ncurses-devel libmcrypt libmcrypt-devel libxml2 && \
 yum install -y nginx && \
 yum -y install php73-php-fpm php73-php-cli php73-php-pdo php73-php-soap php73-php-opcache php73-php-mcrypt php73-php-mbstring php73-php-gd php73-php-fpm php73-php-cli php73-php-mysqlnd php73-php-pear php73-php-pecl-imagick php73-php-pecl-imagick-devel php73-php-pecl-redis php73-php-pecl-mongodb php73-php-pecl-memcached php73-php-pecl-xdebug php73-php-imap php73-php-devel php73-php-bcmath php73-php-pecl-apcu php73-php-pecl-apcu-devel php73-php-pecl-igbinary && \
