@@ -37,51 +37,6 @@ sed -i -e 's/php-fpm --nodaemonize/php-fpm -R --daemonize/' /usr/lib/systemd/sys
 ENV LANG zh_CN.UTF-8
 ENV LC_ALL zh_CN.UTF-8
 
-# 安装swoole扩展
-WORKDIR /tmp
-RUN wget http://pecl.php.net/get/swoole-4.4.12.tgz && \
-tar -zxf swoole-4.4.12.tgz
-WORKDIR /tmp/swoole-4.4.12
-RUN phpize && \
-./configure && \
-make && make install && \
-touch /etc/php.d/swoole.ini && \
-echo "; Enable swoole extension module" > /etc/php.d/swoole.ini && \
-echo "extension=swoole.so" >> /etc/php.d/swoole.ini
-
-# 安装php7的memcache扩展
-WORKDIR /tmp
-RUN git clone https://github.com/websupport-sk/pecl-memcache.git
-WORKDIR /tmp/pecl-memcache
-RUN phpize && \
-./configure && \
-make && make install && \
-touch /etc/php.d/memcache.ini && \
-echo "; Enable memcache extension module" > /etc/php.d/memcache.ini && \
-echo "extension=memcache.so" >> /etc/php.d/memcache.ini
-
-
-# 安装rabbitmq-c
-WORKDIR /tmp
-RUN wget https://github.com/alanxz/rabbitmq-c/archive/v0.9.0.tar.gz -O rabbitmq-c-0.9.0.tar.gz && \
-tar -zxf rabbitmq-c-0.9.0.tar.gz
-WORKDIR /tmp/rabbitmq-c-0.9.0
-RUN yum install -y libtool && autoreconf -i && \
-./configure --prefix=/usr/local/rabbitmq-c && \
-make && make install
-
-# 安装amqp
-WORKDIR /tmp
-RUN wget http://pecl.php.net/get/amqp-1.9.4.tgz && \
-tar -zxf amqp-1.9.4.tgz
-WORKDIR /tmp/amqp-1.9.4
-RUN phpize && \
-./configure --with-amqp --with-librabbitmq-dir=/usr/local/rabbitmq-c && \
-make && make install && \
-touch /etc/php.d/amqp.ini && \
-echo "; Enable amqp extension module" > /etc/php.d/amqp.ini && \
-echo "extension=amqp.so" >> /etc/php.d/amqp.ini
-
 # composer安装
 RUN  curl -s http://getcomposer.org/installer | php && \
 mv composer.phar /usr/bin/composer
