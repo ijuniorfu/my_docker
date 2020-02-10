@@ -1,0 +1,13 @@
+version: "3.1"
+services:
+  mongo_dev:
+    image: mongo:3.5
+    ports:
+      - "27018:27017"
+    volumes:
+      - ${MONGO_VOLUME_DIR}:/data/db
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "200k"
+        max-file: "10"
