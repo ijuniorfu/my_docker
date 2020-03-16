@@ -10,7 +10,7 @@ RUN apt-get install -y software-properties-common \
     language-pack-en-base
 
 RUN LC_ALL=en_US.UTF-8
-RUN cp /usr/share/zoneinfo/Asia/Shanghai  /etc/localtime
+RUN ln -sf /usr/share/zoneinfo/Asia/Shanghai  /etc/localtime
 RUN apt-get update \
     && apt-get upgrade -y \
     && apt-get install -y curl wget telnet supervisor vim net-tools
