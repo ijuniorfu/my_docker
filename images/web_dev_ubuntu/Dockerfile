@@ -7,7 +7,6 @@ ENV DEBIAN_FRONTEND noninteractive
 RUN apt-get update
 
 RUN apt-get install -y software-properties-common \
-    python-software-properties \
     language-pack-en-base
 
 RUN LC_ALL=en_US.UTF-8
