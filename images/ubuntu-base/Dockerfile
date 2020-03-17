@@ -16,4 +16,4 @@ RUN LC_ALL=en_US.UTF-8
 RUN ln -sf /usr/share/zoneinfo/Asia/Shanghai  /etc/localtime
 RUN apt-get update \
     && apt-get upgrade -y \
-    && apt-get install -y curl wget telnet supervisor vim net-tools
+    && apt-get install -y curl wget git telnet cron supervisor vim net-tools
