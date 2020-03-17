@@ -1,20 +1,8 @@
-FROM ubuntu:bionic
+FROM ijuniorfu/ubuntu_base
 
 MAINTAINER junior <ijuniorfu@gmail.com>
 
-# Install packages
-ENV DEBIAN_FRONTEND noninteractive
-RUN apt-get update
-
-RUN apt-get install -y software-properties-common \
-    language-pack-en-base
-
-RUN LC_ALL=en_US.UTF-8
-RUN ln -sf /usr/share/zoneinfo/Asia/Shanghai  /etc/localtime
-RUN apt-get update \
-    && apt-get upgrade -y \
-    && apt-get install -y curl wget telnet supervisor vim net-tools \
-    && add-apt-repository -y ppa:ondrej/php \
+RUN add-apt-repository -y ppa:ondrej/php \
     && apt-get update \
     # Install PHP libraries
     # php7.4-mcrypt not support and move to PECL. Use extension Sodium: http://php.net/manual/book.sodium.php

@@ -2,6 +2,9 @@ FROM ubuntu:bionic
 
 MAINTAINER junior <ijuniorfu@gmail.com>
 
+RUN mv /etc/apt/sources.list /etc/apt/sourses.list.bak
+ADD sources.list /etc/apt/sources.list
+
 # Install packages
 ENV DEBIAN_FRONTEND noninteractive
 RUN apt-get update
