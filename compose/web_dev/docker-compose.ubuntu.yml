@@ -1,0 +1,21 @@
+version: "3"
+services:
+  web_dev:
+    image: ijuniorfu/web_dev_ubuntu
+    privileged: true
+    ports:
+      - "80:80"
+      - "443:443"
+      - "2222:22"
+      - "9527:9527"
+    volumes:
+      - /data/htdocs:/data/htdocs
+      - /data/docker/conf/nginx/conf.d:/etc/nginx/conf.d
+      - /data/docker/conf/nginx/nginx.conf:/etc/nginx/nginx.conf
+      - /data/docker/conf/php/php.ini:/etc/php.ini
+      - /data/docker/conf/supervisor/conf.d:/etc/supervisor/conf.d
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "200k"
+        max-file: "10"

@@ -29,6 +29,7 @@ yum -y install tar && \
 yum -y install telnet && \
 yum -y install net-tools && \
 yum -y install crontabs && \
+yum -y install supervisor && \
 systemctl enable crond.service && \
 systemctl enable php-fpm.service&& \
 systemctl enable nginx.service && \
