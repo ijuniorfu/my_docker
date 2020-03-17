@@ -1,4 +1,4 @@
-FROM ijuniorfu/ubuntu_base
+FROM ijuniorfu/ubuntu-base
 
 MAINTAINER junior <ijuniorfu@gmail.com>
 
