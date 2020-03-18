@@ -32,3 +32,9 @@ RUN phpize  &&  ./configure &&  make  && make install \
 && echo "extension=swoole.so" >> /etc/php/7.4/mods-available/swoole.ini \
 && ln -s /etc/php/7.4/mods-available/swoole.ini /etc/php/7.4/cli/conf.d/20-swoole.ini \
 && ln -s /etc/php/7.4/mods-available/swoole.ini /etc/php/7.4/fpm/conf.d/20-swoole.ini
+
+WORKDIR /
+RUN rm -rf /tmp/mcrypt-1.0.3 \
+&& rm -rf /tmp/mcrypt-1.0.3.tgz \
+&& rm -rf /tmp/swoole-4.4.16 \
+&& rm -rf /tmp/swoole-4.4.16.tgz
