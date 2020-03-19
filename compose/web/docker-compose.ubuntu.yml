@@ -1,7 +1,7 @@
 version: "3"
 services:
   web_dev:
-    image: ijuniorfu/web_dev_ubuntu
+    image: ijuniorfu/ubuntu-nginx-php
     privileged: true
     ports:
       - "80:80"
