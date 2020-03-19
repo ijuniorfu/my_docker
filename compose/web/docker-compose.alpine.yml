@@ -1,0 +1,24 @@
+version: "3"
+services:
+  web_dev:
+    image: ijuniorfu/alpine-nginx-php
+    privileged: true
+    ports:
+      - "80:80"
+      - "443:443"
+      - "2222:22"
+      - "9527:9527"
+    volumes:
+      - ${HTDOCS_DIR}:/data/htdocs
+      - ./alpine-conf/nginx/nginx.conf:/etc/nginx/nginx.conf
+      - ./alpine-conf/nginx/conf.d:/etc/nginx/conf.d
+      - ./alpine-conf/php/php.ini:/etc/php7/php.ini
+      - ./alpine-conf/php/php-fpm.conf:/etc/php7/php-fpm.conf
+      - ./alpine-conf/php/php-fpm.d:/etc/php7/php-fpm.d
+      - ./alpine-conf/supervisor/supervisord.conf:/etc/supervisor/supervisord.conf
+      - ./alpine-conf/supervisor/supervisor.d:/etc/supervisor/supervisor.d
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "200k"
+        max-file: "10"
