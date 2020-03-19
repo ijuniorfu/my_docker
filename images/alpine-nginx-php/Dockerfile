@@ -9,3 +9,4 @@ RUN sed -i -e 's/dl-cdn.alpinelinux.org/mirrors.aliyun.com/' /etc/apk/repositori
 && apk add curl php7 php7-pcntl php7-openssl php7-pdo_mysql php7-fpm php7-pecl-imagick php7-mysqlnd php7-pecl-redis php7-pecl-amqp php7-opcache php7-curl php7-gd php7-mbstring php7-mysqli php7-json php7-mbstring php7-pecl-mcrypt php7-bcmath php7-pecl-igbinary php7-pecl-memcached php7-iconv php7-xml php7-zip
 
 
+CMD /usr/sbin/nginx && /usr/sbin/php-fpm7
