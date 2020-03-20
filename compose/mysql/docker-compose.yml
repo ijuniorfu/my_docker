@@ -14,3 +14,7 @@ services:
       options:
         max-size: "200k"
         max-file: "10"
+networks:
+  custom_net:
+    external:
+      name: app_net
