@@ -38,5 +38,3 @@ RUN rm -rf /tmp/mcrypt-1.0.3 \
 && rm -rf /tmp/mcrypt-1.0.3.tgz \
 && rm -rf /tmp/swoole-4.4.16 \
 && rm -rf /tmp/swoole-4.4.16.tgz
-
-CMD service nginx start && service php7.4-fpm start
