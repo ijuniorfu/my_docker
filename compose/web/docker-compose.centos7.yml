@@ -10,10 +10,10 @@ services:
      - "9527:9527"
     volumes:
       - ${HTDOCS_DIR}:/data/htdocs
-      - ./conf/nginx/conf.d:/etc/nginx/conf.d
-      - ./conf/nginx/nginx.conf:/etc/nginx/nginx.conf
-      - ./conf/php/php.ini:/etc/php.ini
-      - ./conf/supervisor/conf.d:/etc/supervisor/conf.d
+      - ${CONF_DIR}/nginx/conf.d:/etc/nginx/conf.d
+      - ${CONF_DIR}/nginx/nginx.conf:/etc/nginx/nginx.conf
+      - ${CONF_DIR}/php/php.ini:/etc/php.ini
+      - ${CONF_DIR}/supervisor/conf.d:/etc/supervisor/conf.d
     logging:
       driver: "json-file"
       options:

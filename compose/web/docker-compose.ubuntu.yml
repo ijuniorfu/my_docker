@@ -10,14 +10,16 @@ services:
       - "9527:9527"
     volumes:
       - ${HTDOCS_DIR}:/data/htdocs
-      - ./conf/nginx/nginx.conf:/etc/nginx/nginx.conf
-      - ./conf/nginx/conf.d:/etc/nginx/conf.d
-      - ./conf/php/cli/php.ini:/etc/php/7.4/cli/php.ini
-      - ./conf/php/fpm/php.ini:/etc/php/7.4/fpm/php.ini
-      - ./conf/php/fpm/php-fpm.conf:/etc/php/7.4/fpm/php-fpm.conf
-      - ./conf/php/fpm/pool.d:/etc/php/7.4/fpm/pool.d
-      - ./conf/supervisor/supervisord.conf:/etc/supervisor/supervisord.conf
-      - ./conf/supervisor/conf.d:/etc/supervisor/conf.d
+      - ${CONF_DIR}/nginx/nginx.conf:/etc/nginx/nginx.conf
+      - ${CONF_DIR}/nginx/conf.d:/etc/nginx/conf.d
+      - ${CONF_DIR}/php/cli/php.ini:/etc/php/7.4/cli/php.ini
+      - ${CONF_DIR}/php/fpm/php.ini:/etc/php/7.4/fpm/php.ini
+      - ${CONF_DIR}/php/fpm/php-fpm.conf:/etc/php/7.4/fpm/php-fpm.conf
+      - ${CONF_DIR}/php/fpm/pool.d:/etc/php/7.4/fpm/pool.d
+      - ${CONF_DIR}/supervisor/supervisord.conf:/etc/supervisor/supervisord.conf
+      - ${CONF_DIR}/supervisor/conf.d:/etc/supervisor/conf.d
+    command:
+      supervisord --nodaemon
     logging:
       driver: "json-file"
       options:
