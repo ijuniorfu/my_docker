@@ -1,2 +1,2 @@
-# php_dockerize
-php dockerize
+# mydocker 
+mydocker
