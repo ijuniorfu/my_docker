@@ -8,9 +8,6 @@ services:
       - "443:443"
       - "2222:22"
       - "9527:9527"
-    links:
-      - mysql_dev
-      - redis_dev
     volumes:
       - ${HTDOCS_DIR}:/data/htdocs
       - ${CONF_DIR}/php/php.ini:/etc/php7/php.ini
@@ -23,30 +20,9 @@ services:
       options:
         max-size: "200k"
         max-file: "10"
-  mysql_dev:
-    image: mysql:8.0
-    command: --default-authentication-plugin=mysql_native_password --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
-    ports:
-      - "3307:3306"
-    environment:
-      MYSQL_ROOT_PASSWORD: 123456
-    volumes:
-      - ${MYSQL_VOLUME_DIR}:/var/lib/mysql
-    logging:
-      driver: "json-file"
-      options:
-        max-size: "200k"
-        max-file: "10"
-  redis_dev:
-    image: redis:3.2
-    ports:
-      - "6380:6379"
-    volumes:
-      - ${REDIS_VOLUME_DIR}:/data
-    command:
-      redis-server --appendonly yes
-    logging:
-      driver: "json-file"
-      options:
-        max-size: "200k"
-        max-file: "10"
+    networks:
+      - app_net
+networks:
+  app_net:
+    external:
+      name: app_net

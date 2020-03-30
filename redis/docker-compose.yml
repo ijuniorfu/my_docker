@@ -1,0 +1,22 @@
+version: "3.1"
+services:
+  redis_dev:
+    image: redis:3.2
+    restart: always
+    ports:
+      - "6380:6379"
+    volumes:
+      - ${REDIS_VOLUME_DIR}:/data
+    command:
+      redis-server --appendonly yes
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "200k"
+        max-file: "10"
+    networks:
+      - app_net
+networks:
+  app_net:
+    external:
+      name: app_net
